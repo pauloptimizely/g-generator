@@ -13,5 +13,5 @@ const generatorMap = {
 const generator = generatorMap[input];
 const Generator = require(generator.path);
 
-const g = new Generator(generator);
+const g = new Generator(generator, argv);
 g.run()

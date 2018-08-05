@@ -7,5 +7,5 @@ G is a faster implemenation of yeoman.
 #### React
 
 ```
-g react
+g react -c Button -t component -d /path/to/compoent/dir
 ```

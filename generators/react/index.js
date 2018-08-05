@@ -3,40 +3,54 @@ const inquirerDirectory = require('inquirer-directory');
 const toSlugCase = require('to-slug-case')
 
 module.exports = class extends Generator {
-  constructor(args, opts) {
-    super(args, opts);
+  constructor(opts, argv) {
+    super(opts, argv);
     this.inquirer.registerPrompt('directory', inquirerDirectory);
     this.props = {}
   }
 
   prompting() {
-    const prompts = [
-      {
+    if (this.argv.c) this.props.componentName = this.argv.c;
+    if (this.argv.t) this.props.componentType = this.argv.t;
+    if (this.argv.d) this.props.componentDir = this.argv.d;
+
+    let prompts = []
+
+    if (!this.props.componentName) {
+      prompts.push({
         type: 'input',
         name: 'componentName',
         message: 'What is your component\'s name?',
         required: true,
-      },
-      {
+      });
+    }
+
+    if(!this.props.componentType) {
+      prompts.push({
         type: 'list',
         name: 'componentType',
         message: 'What type of component would you like?',
         choices: [
-          'Component',
-          'Container',
-          'Pure Component'
+          'component',
+          'container',
+          'pure'
         ],
         default: 'Component'
-      },
-      {
+      });
+    }
+
+    if (!this.props.componentDir) {
+      prompts.push({
         type: 'directory',
         name: 'componentDir',
         message: 'Where is your component located?',
         basePath: process.cwd(),
-      }
-    ];
+      });
+    }
 
-    return this.prompt(prompts).then(props => { this.props = props });
+    return this.prompt(prompts).then(props => {
+      this.props = Object.assign({}, this.props, props)
+    });
   }
 
   writing() {
@@ -48,9 +62,9 @@ module.exports = class extends Generator {
 
     const dir = this.props.componentDir || process.cwd();
     const type = ({
-      'Component': 'component',
-      'Container': 'container',
-      'Pure Component': 'pure-component'
+      component: 'component',
+      container: 'container',
+      pure: 'pure-component'
     })[this.props.componentType]
 
     this.fs.copyTpl(

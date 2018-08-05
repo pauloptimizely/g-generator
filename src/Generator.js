@@ -6,8 +6,9 @@ const path = require('path');
 // TODO: Create a Generator factory to inject dependencies
 
 module.exports = class Generator {
-  constructor(config) {
+  constructor(config, argv) {
     this.config = config;
+    this.argv = argv;
     this.inquirer = inquirer;
     this.fs = new FileSystem();
     this.logger = new Logger();
