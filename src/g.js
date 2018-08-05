@@ -2,6 +2,11 @@ const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs')
 const path = require('path')
 
+if (argv._.length < 1) {
+  console.log('g [generator] [options]');
+  process.exit(1);
+}
+
 const input = argv._[0];
 
 const generatorMap = {
