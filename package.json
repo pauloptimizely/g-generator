@@ -1,0 +1,20 @@
+{
+  "name": "generator",
+  "version": "0.0.0",
+  "description": "faster than yeoman code generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul Serraino",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "ejs": "^2.6.1",
+    "inquirer": "^6.0.0",
+    "inquirer-directory": "^2.1.0",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "to-slug-case": "^1.0.0"
+  }
+}
