@@ -88,7 +88,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath(`./${type}.tmpl.js`),
       this.destinationPath(`${dir}/${name}/${name}.js`),
-      this.props
+      { ...this.props, componentSlugName: toSlugCase(this.props.componentName) }
     );
 
   }

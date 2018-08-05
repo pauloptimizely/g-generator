@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { connect } from 'react-redux';
 
-import './<%= componentName %>.scss';
+import './<%= componentSlugName %>.scss';
 
 class <%= componentName %> extends Component {
   constructor(props) {
