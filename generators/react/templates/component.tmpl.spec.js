@@ -19,13 +19,13 @@ describe('', function() {
 
   });
 
-  describe('Basic Rendering', function() {
+  describe('basic rendering', function() {
     it('should render <%= componentName %>', function() {
       expect(component.find('<%= componentName %>').exists()).toBe(true);
     });
   });
 
-  describe('Editing', function() {
+  describe('editing', function() {
 
   });
 
