@@ -7,7 +7,7 @@ const getTestProps = props => ({
   ...props,
 });
 
-describe('', function() {
+describe('<%= componentName %>', function() {
   let component;
   beforeEach(function() {
     component = mount(

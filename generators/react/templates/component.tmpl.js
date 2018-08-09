@@ -14,7 +14,7 @@ class <%= componentName %> extends Component {
 
   render() {
     return (
-      <div className="<%= componentName %>">
+      <div className="<%= componentSlugName %>">
       </div>
     )
   }
