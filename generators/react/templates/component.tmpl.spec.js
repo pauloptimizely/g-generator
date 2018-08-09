@@ -3,26 +3,21 @@ import { mount } from 'enzyme';
 
 import <%= componentName %> from './<%= componentName %>';
 
-const getTestProps = props => ({
-  ...props,
-});
-
 describe('<%= componentName %>', function() {
   let component;
   beforeEach(function() {
     component = mount(
-        <<%= componentName %> {...getTestProps()} />
+        <<%= componentName %>
+        />
     );
   });
 
   afterEach(function() {
-
+    component.unmount();
   });
 
   describe('basic rendering', function() {
-    it('should render <%= componentName %>', function() {
-      expect(component.find('<%= componentName %>').exists()).toBe(true);
-    });
+
   });
 
   describe('editing', function() {
