@@ -9,13 +9,9 @@ if (argv._.length < 1) {
 
 const input = argv._[0];
 
-const generatorMap = {
-  react: {
-    path: '../generators/react',
-  },
-};
+const generatorConfig = require('../generator.config');
 
-const generator = generatorMap[input];
+const generator = generatorConfig[input];
 const Generator = require(generator.path);
 
 const g = new Generator(generator, argv);
