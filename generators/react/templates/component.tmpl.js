@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Immutable from 'immutable';
 
 import './<%= componentSlugName %>.scss';
+
+/**
+ * <%= componentName %>
+ *
+ */
 
 class <%= componentName %> extends Component {
   constructor(props) {

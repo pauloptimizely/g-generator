@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Immutable from 'immutable';
 import { connect } from 'react-redux';
 
 import './<%= componentSlugName %>.scss';
+
+/**
+ * <%= componentName %>
+ *
+ */
 
 class <%= componentName %> extends Component {
   constructor(props) {

@@ -1,10 +1,14 @@
-import React, { PureComponent as Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Immutable from 'immutable';
 
 import './<%= componentSlugName %>.scss';
 
-class <%= componentName %> extends Component {
+/**
+ * <%= componentName %>
+ *
+ */
+
+class <%= componentName %> extends PureComponent {
   render() {
     return (
       <div className="<%= componentSlugName %>">
