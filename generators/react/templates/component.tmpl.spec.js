@@ -11,9 +11,9 @@ const getProps = props => ({
 });
 
 /**
- * returns mounted component
+ * returns mounted component with props
  */
-const getComponent = (props) => (mount(<<%= componentName %> {...props} />));
+const getComponent = (props) => (mount(<<%= componentName %> {...getProps(props)} />));
 
 describe('components/<%= componentName %>', function() {
   describe('basic rendering', function() {
