@@ -3,19 +3,19 @@ import { mount } from 'enzyme';
 
 import <%= componentName %> from './<%= componentName %>';
 
-/**
- * returns test props
- */
-const getProps = props => ({
-  ...props,
-});
-
-/**
- * returns mounted component with props
- */
-const getComponent = (props) => (mount(<<%= componentName %> {...getProps(props)} />));
-
 describe('components/<%= componentName %>', function() {
+  let component;
+  beforeEach(function() {
+    component = mount(
+      <<%= componentName %>
+      />
+    );
+  });
+
+  afterEach(function() {
+    component.unmount();
+  });
+
   describe('basic rendering', function() {
 
   });

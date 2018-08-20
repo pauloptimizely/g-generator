@@ -13,7 +13,7 @@ class <%= componentName %> extends PureComponent {
     return (
       <div className="<%= componentSlugName %>">
       </div>
-    )
+    );
   }
 }
 

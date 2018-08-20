@@ -21,7 +21,7 @@ class <%= componentName %> extends Component {
     return (
       <div className="<%= componentSlugName %>">
       </div>
-    )
+    );
   }
 }
 
