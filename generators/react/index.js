@@ -2,6 +2,18 @@ const Generator = require('../../src/Generator')
 const inquirerDirectory = require('inquirer-directory');
 const toSlugCase = require('to-slug-case')
 
+const help = `
+
+g react -c [name] -t [type] -d [baseDir]
+
+name - component name
+type - component type
+  * component
+  * pure
+  * container
+baseDir - component's base directory
+`
+
 module.exports = class extends Generator {
   constructor(opts, argv) {
     super(opts, argv);
@@ -9,56 +21,38 @@ module.exports = class extends Generator {
     this.props = {}
   }
 
-  prompting() {
-    if (this.argv.c) this.props.componentName = this.argv.c;
-    if (this.argv.t) this.props.componentType = this.argv.t;
-    if (this.argv.d) this.props.componentDir = this.argv.d;
+  mapArgsToProps() {
+    this.props.componentName = this.argv.c;
+    this.props.componentType = this.argv.t || 'component';
+    this.props.componentDir = this.argv.d;
 
-    let prompts = []
-
-    if (!this.props.componentName) {
-      prompts.push({
-        type: 'input',
-        name: 'componentName',
-        message: 'What is your component\'s name?',
-        required: true,
-      });
-    }
-
-    if(!this.props.componentType) {
-      prompts.push({
-        type: 'list',
-        name: 'componentType',
-        message: 'What type of component would you like?',
-        choices: [
-          'component',
-          'container',
-          'pure'
-        ],
-        default: 'Component'
-      });
-    }
-
-    if (!this.props.componentDir) {
-      prompts.push({
-        type: 'directory',
-        name: 'componentDir',
-        message: 'Where is your component located?',
-        basePath: process.cwd(),
-      });
-    }
-
-    return this.prompt(prompts).then(props => {
+    return Promise.resolve(() => {
       this.props = Object.assign({}, this.props, props)
     });
   }
 
+  validateProps() {
+    const { componentName, componentType, componentDir } = this.props
+    let errors = [];
+
+    if (!componentName) errors.push('Invalid component name.');
+    if (!componentType) errors.push('Invalid component type.');
+    if (!componentDir) errors.push('Invalid component base directory.');
+
+    this.props.errors = errors;
+  }
+
+  prompting() {
+    return this.mapArgsToProps()
+      .then(this.validateProps.bind(this));
+  }
+
   writing() {
-    const name = this.props.componentName;
-    if (!name) {
-      this.logError('Component name is required');
-      return;
+    if (this.props.errors.length > 0) {
+      return this.logError(`${ this.props.errors.join(' ') } ${ help }`);
     }
+
+    const name = this.props.componentName;
 
     const dir = this.props.componentDir || process.cwd();
     const type = ({
@@ -66,6 +60,10 @@ module.exports = class extends Generator {
       container: 'container',
       pure: 'pure-component'
     })[this.props.componentType]
+
+    if (!type) {
+      return this.logError(`Invalid type of ${type}. ${help}`);
+    }
 
     this.fs.copyTpl(
       this.templatePath('./index.tmpl.js'),
