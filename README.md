@@ -23,6 +23,7 @@ It should have the following format:
 ### CLI Usage
 
 **Args**
+
 - `c` - component name
 - `t` - component type. Valid types are: `component`, `pure`, `container` (defaults to `component`)
 - `d` - component's base directory
