@@ -16,23 +16,7 @@ update .bash_profile (symbolic linking didn't work for me)
 alias g="/path/to/g-generator/src/g.js"
 ```
 
-## Adding a generator
-
-Add the path to your generator to `generator.config.js`
-
-It should have the following format:
-
-```js
-{
-  generatorName: {
-    path: '/path/to/generator/dir',
-  }
-}
-```
-
-## Included Generators
-
-### React
+## React Generator
 
 ### CLI Usage
 
@@ -54,4 +38,18 @@ src/
     Button.js
     Button.spec.js
     index.js
+```
+
+## Adding a generator
+
+Add the path to your generator to `generator.config.js`
+
+It should have the following format:
+
+```js
+{
+  generatorName: {
+    path: '/path/to/generator/dir',
+  }
+}
 ```
