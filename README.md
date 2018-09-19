@@ -2,6 +2,20 @@
 
 G is a faster implemenation of yeoman.
 
+## Installing
+
+clone the repo
+
+```
+git clone https://bitbucket.org/pauljstx/g-generator.git
+```
+
+update .bash_profile (symbolic linking didn't work for me)
+
+```
+alias g="/path/to/g-generator/src/g.js"
+```
+
 ## Adding a generator
 
 Add the path to your generator to `generator.config.js`
