@@ -2,6 +2,10 @@
 
 G is a faster implemenation of yeoman.
 
+```
+g [generator] [options]
+```
+
 ## Installing
 
 clone the repo
