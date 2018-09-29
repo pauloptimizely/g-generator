@@ -14,6 +14,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "ejs": "^2.6.1",
+    "go-react": "0.0.1",
     "inquirer": "^6.0.0",
     "inquirer-directory": "^2.1.0",
     "minimist": "^1.2.0",

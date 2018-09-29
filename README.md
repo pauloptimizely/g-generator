@@ -13,7 +13,7 @@ g [generator] [options]
 
 ## Built-in generators
 
-- [g-react]()
+- [go-react](https://github.com/pauloptimizely/go-react)
 
 ## Creating a generator
 
