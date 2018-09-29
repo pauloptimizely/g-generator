@@ -17,10 +17,10 @@ g [generator] [options]
 
 ## Creating a generator
 
-Goman generators have `g-` prefix.
+Goman generators have `go-` prefix.
 
 ```
-npm install -g g-your-new-generator
+npm install -g go-your-new-generator
 ```
 
 than call
@@ -33,6 +33,6 @@ The prefix can be changed by updating `~/.g/.g.config.json`
 
 ```js
 {
-  "prefix": "g"
+  "prefix": "go"
 }
 ```

@@ -13,7 +13,7 @@ if (argv._.length < 1) {
 const input = argv._[0];
 
 let generatorConfig = {
-  prefix: 'g',
+  prefix: 'go',
 }
 
 try {
