@@ -21,15 +21,17 @@ try {
 } catch (error) {
 }
 
-const gmodule = `${ generatorConfig.prefix }-${ input }`;
+const generatorName = `${ generatorConfig.prefix }-${ input }`;
 
-const Generator = require(gmodule);
+const Generator = require(generatorName);
 const logger = new Logger();
 const fileSytem = new FileSystem({ logger })
 
 const g = new Generator({
+  argv,
   logger,
+  generatorName,
   fs: fileSytem,
-}, argv);
+});
 
 g.run()

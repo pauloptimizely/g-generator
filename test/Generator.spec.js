@@ -23,7 +23,8 @@ describe('Generator', function() {
     generator = new Generator({
       fs: mockFileSystem,
       logger: mockLogger,
-    }, mockArgv)
+      argv: mockArgv
+    })
 
     generator.prompting = sinon.stub().resolves()
     generator.writing = sinon.stub()

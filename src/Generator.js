@@ -4,18 +4,20 @@ const path = require('path');
 // TODO: Create a Generator factory to inject dependencies
 
 module.exports = class Generator {
-  constructor(deps, argv) {
-    this.fs = deps.fs;
-    this.logger = deps.logger;
-    this.argv = argv;
-    this.generatorName = argv._[0];
+  constructor(props) {
+    this.fs = props.fs;
+    this.logger = props.logger;
+    this.argv = props.argv;
+    this.generatorName = props.generatorName;
     this.inquirer = inquirer;
   }
 
   templatePath(tmplPath) {
-    let base = require.resolve(this.generatorName);
+    let modPath = require.resolve(this.generatorName);
+    let base = modPath.split('/')
     base.pop();
-    return path.join(base, 'templates', tmplPath);
+    console.log('path', path.join(base.join('/'), 'templates', tmplPath));
+    return path.join(base.join('/'), 'templates', tmplPath);
   }
 
   destinationPath(destPath) {
