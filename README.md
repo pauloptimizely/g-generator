@@ -1,6 +1,6 @@
-# G aka Goman
+# G (aka Goman)
 
-G aka Goman is a faster implemenation of yeoman.
+G (aka Goman) is a faster implemenation of yeoman.
 
 ```
 sudo npm install -g goman
