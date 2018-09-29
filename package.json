@@ -4,7 +4,7 @@
   "description": "faster than yeoman code generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Paul Serraino",
   "license": "ISC",
@@ -16,5 +16,10 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "to-slug-case": "^1.0.0"
+  },
+  "devDependencies": {
+    "expect": "^23.6.0",
+    "mocha": "^5.2.0",
+    "sinon": "^6.3.4"
   }
 }
