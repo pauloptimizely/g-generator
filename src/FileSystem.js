@@ -1,18 +1,20 @@
 const fs = require('fs');
 const ejs = require('ejs');
 const mkdirp = require('mkdirp');
-const Logger = require('./Logger');
 
 module.exports = class FileSystem {
-  constructor() {
-    this.logger = new Logger();
+  constructor(deps) {
+    this.logger = deps.logger;
+    this.fs = fs;
+    this.mkdirp = mkdirp;
   }
+
   copyTpl(templatePath, dest, props) {
-    let template = fs.readFileSync(templatePath).toString();
+    let template = this.fs.readFileSync(templatePath).toString();
     let dir = dest.split('/')
     dir.pop()
-    mkdirp.sync(dir.join('/'));
+    this.mkdirp.sync(dir.join('/'));
     this.logger.logCreate(dest)
-    fs.writeFileSync(dest, ejs.render(template, props));
+    this.fs.writeFileSync(dest, ejs.render(template, props));
   }
 }

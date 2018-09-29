@@ -1,33 +1,27 @@
-const FileSystem = require('./FileSystem');
-const Logger = require('./Logger');
 const inquirer = require('inquirer');
 const path = require('path');
 
 // TODO: Create a Generator factory to inject dependencies
 
 module.exports = class Generator {
-  constructor(config, argv) {
-    this.config = config;
-    this.argv = argv;
+  constructor(props) {
+    this.fs = props.fs;
+    this.logger = props.logger;
+    this.argv = props.argv;
+    this.generatorName = props.generatorName;
     this.inquirer = inquirer;
-    this.fs = new FileSystem();
-    this.logger = new Logger();
   }
 
   templatePath(tmplPath) {
-    return path.join(__dirname, this.config.path, 'templates', tmplPath);
+    let modPath = require.resolve(this.generatorName);
+    let base = modPath.split('/')
+    base.pop();
+    console.log('path', path.join(base.join('/'), 'templates', tmplPath));
+    return path.join(base.join('/'), 'templates', tmplPath);
   }
 
   destinationPath(destPath) {
     return destPath;
-  }
-
-  log(...args) {
-    this.logger.log.apply(this.logger, args)
-  }
-
-  logError(...args) {
-    this.logger.logError.apply(this.logger, args)
   }
 
   prompt(questions) {
@@ -41,7 +35,7 @@ module.exports = class Generator {
   writing() {}
 
   run() {
-    this.prompting()
+    return this.prompting()
     .then(this.writing.bind(this))
     .catch(this.logger.logError)
   }
