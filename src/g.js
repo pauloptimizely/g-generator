@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const argv = require('minimist')(process.argv.slice(2));
+const Logger = require('../src/Logger')
+const FileSystem = require('../src/FileSystem')
 const fs = require('fs');
 
 if (argv._.length < 1) {
@@ -22,6 +24,12 @@ try {
 const gmodule = `${ generatorConfig.prefix }-${ input }`;
 
 const Generator = require(gmodule);
+const logger = new Logger();
+const fileSytem = new FileSystem({ logger })
 
-const g = new Generator(generator, argv);
+const g = new Generator({
+  logger,
+  fs: fileSytem,
+}, argv);
+
 g.run()
