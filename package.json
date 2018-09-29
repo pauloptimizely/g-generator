@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "faster than yeoman code generator",
   "main": "index.js",
+  "bin": {
+    "g": "./src/g.js"
+  },
   "scripts": {
     "test": "mocha"
   },
