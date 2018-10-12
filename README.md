@@ -14,6 +14,7 @@ g [generator] [options]
 ## Built-in generators
 
 - [go-react](https://github.com/pauloptimizely/go-react)
+- [go-react-oui](https://github.com/pauloptimizely/go-react-oui)
 
 ## Creating a generator
 
